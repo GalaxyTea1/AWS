@@ -1,0 +1,17 @@
+# ps
+- Current shell now:
+> ps
+- PID: The unique process ID
+- TTY: Terminal type that the user is logged into 
+- TIME: Amount of CPU in minutes and seconds that the process has been running 
+- CMD: Name of the command that launched the process.
+
+Basic Syntax:
+> ps -ef
+BSD Syntax:
+> ps aux
+
+systemctl start jenkins
+systemctl enable jenkins
+systemctl status jenkins
+
