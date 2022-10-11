@@ -1,11 +1,4 @@
 # AWS
-** ** bold
-* * italic
-> blockquote
-<code></code>
-*
-
-
 ### **What is cloud computing**
 The practice of using a network of remote servers hosted on the Internet to store, manage, and process data, rather than a local server or a personal computer.
 
@@ -44,6 +37,7 @@ The practice of using a network of remote servers hosted on the Internet to stor
 - Usually 3, min is 2, max is 6
 
 ### **IAM**
+- Link user: https://trong-aws.signin.aws.amazon.com/console
 - IAM = Identity and Access Management, Global service
 - Users & Groups
 - Permissions
@@ -59,3 +53,4 @@ The practice of using a network of remote servers hosted on the Internet to stor
         - Action: list of actions this policy allows or denies
         - Resource: list of resource to which the actions applied to
         - Condition: conditions for when this policy is in effect (optinal)
+
