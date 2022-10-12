@@ -43,7 +43,7 @@ The practice of using a network of remote servers hosted on the Internet to stor
 - Permissions
 - Policies
     - Consists of:
-        - Version: policy language version, always include "2022-09-29"
+        - Version: policy language version, always include, ex:"2022-09-29"
         - Id: an identifier for the policy (optional)
         - Statement: one or more individual statements (required)
     - Statements consists of:
@@ -54,3 +54,12 @@ The practice of using a network of remote servers hosted on the Internet to stor
         - Resource: list of resource to which the actions applied to
         - Condition: conditions for when this policy is in effect (optinal)
 
+### **AMI**
+- AMI = Amazon Machine Image
+- AMI are a customization of an EC2 instance
+  - Add own software, configuring, operating system, monitoring...
+  - Faster boot / configuration time because all software is pre-packaged
+- AMI are built for a specific region ( add can be copied across regions)
+- Lauch EC2 instance from:
+  - A public AMI: AWS provided
+  - 
