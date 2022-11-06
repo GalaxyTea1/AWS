@@ -2,12 +2,6 @@
 ### **What is cloud computing**
 The practice of using a network of remote servers hosted on the Internet to store, manage, and process data, rather than a local server or a personal computer.
 
-### **On-Premise**
-- You own the servers
-- You hire the IT people
-- You pa or rent the real-estate
-- You take all the risk
-
 ### **Cloud Providers**
 - Someone else owns the servers
 - Someone else hires the IT people
@@ -32,9 +26,11 @@ The practice of using a network of remote servers hosted on the Internet to stor
 - Proximity
 - Available services
 - Pricing
+Choose a region nearest customer
 
 ### **Zones**
 - Usually 3, min is 2, max is 6
+- Singapore (ap-southeast-1)
 
 ### **IAM**
 - Link user: https://trong-aws.signin.aws.amazon.com/console
@@ -53,6 +49,11 @@ The practice of using a network of remote servers hosted on the Internet to stor
         - Action: list of actions this policy allows or denies
         - Resource: list of resource to which the actions applied to
         - Condition: conditions for when this policy is in effect (optinal)
+### **Connect SSH**
+- PuTTY Gen Load key (save private key)
+- Input ipv4 address (port 22) ec2-user@hostname
+- Create session & save session
+- Connection -> SSH -> Auth -> Browser -> Add link key ->  wayback session & save
 
 ### **AMI**
 - AMI = Amazon Machine Image
@@ -62,4 +63,22 @@ The practice of using a network of remote servers hosted on the Internet to stor
 - AMI are built for a specific region ( add can be copied across regions)
 - Lauch EC2 instance from:
   - A public AMI: AWS provided
-  - 
+  - Own AMI: make & matain them yourself
+  - AWS Marketplace AMI: someone made
+
+### **User data**
+```#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo"$(hostname -f)"> /var/www/html/index.html
+```
+### **EBS Volume Types**
+####6 types:
+- gp2/gp3(SSD): Genaral purpose, balances price & performance
+- iol/io2(SSD): Highest-performance, low-latency & high-throughput
+- stl(HDD): Low cost, frequently accessed & throughput-intensive workloads
+- scl(HDD): Lowest cost, less frequently accessed 
+
+### **EFS**
