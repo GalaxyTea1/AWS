@@ -74,6 +74,18 @@ systemctl start httpd
 systemctl enable httpd
 echo"$(hostname -f)"> /var/www/html/index.html
 ```
+
+### **EBS Volume**
+An EBS (Elastic Block Store) Volume is a network drive you can attach 
+to your instances while they run
+- It allows your instances to persist data, even after their termination
+- They can only be mounted to one instance at a time (at the CCP level)
+- They are bound to a specific availability zone
+- Analogy: Think of them as a “network USB stick” 
+  
+EBS – Delete on Termination attribute (default: terminated when instance terminated)
+![](https://res.cloudinary.com/boo-it/image/upload/v1667975914/aws/ebs_volume.png)
+
 ### **EBS Volume Types**
 ####6 types:
 - gp2/gp3(SSD): Genaral purpose, balances price & performance
@@ -82,3 +94,18 @@ echo"$(hostname -f)"> /var/www/html/index.html
 - scl(HDD): Lowest cost, less frequently accessed 
 
 ### **EFS**
+Managed NFS (network file system)
+- EFS has a higher price point than EBS
+- Save cost (EFS-IA)
+EBS sẽ phải trả cho dung lượng được cung cấp trước, EFS xài bao nhiêu thì trả bấy nhiêu
+
+### **Load balancing**
+Nó là 1 or tập hợp nhiều máy chủ sẽ chuyển tiếp lưu lượng tiếp nhận được đến nhiều server downstream(EC2 instances...)
+Classic Load Balancers (v1)
+- Supports TCP, HTTP & HTTPS
+
+Application Load Balancer
+- Support for HTTP/2 and WebSocket
+- Support redirects
+Network Load Balancer
+Gateway Load Balancer
