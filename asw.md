@@ -99,7 +99,11 @@ Managed NFS (network file system)
 - Save cost (EFS-IA)
 EBS sẽ phải trả cho dung lượng được cung cấp trước, EFS xài bao nhiêu thì trả bấy nhiêu
 
+![](https://res.cloudinary.com/boo-it/image/upload/v1667976670/aws/efs_filesystem.png)
+
 ### **Load balancing**
+![](https://res.cloudinary.com/boo-it/image/upload/v1667983459/aws/load_balancer.png)
+
 Nó là 1 or tập hợp nhiều máy chủ sẽ chuyển tiếp lưu lượng tiếp nhận được đến nhiều server downstream(EC2 instances...)
 Classic Load Balancers (v1)
 - Supports TCP, HTTP & HTTPS
