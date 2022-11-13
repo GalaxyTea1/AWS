@@ -105,6 +105,7 @@ EBS sẽ phải trả cho dung lượng được cung cấp trước, EFS xài b
 ![](https://res.cloudinary.com/boo-it/image/upload/v1667983459/aws/load_balancer.png)
 
 Nó là 1 or tập hợp nhiều máy chủ sẽ chuyển tiếp lưu lượng tiếp nhận được đến nhiều server downstream(EC2 instances...)
+
 Classic Load Balancers (v1)
 - Supports TCP, HTTP & HTTPS
 
