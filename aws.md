@@ -305,13 +305,26 @@ Tùy thuộc công nghệ Load Balancing mà các thuật toán khác nhau sẽ 
 
   
 
-Application Load Balancer
+**Application Load Balancer**
 
 - Support for HTTP/2 and WebSocket
 
 - Support redirects
 
 
-Network Load Balancer
+**Network Load Balancer**
 
-Gateway Load Balancer
+- Support for TCP/TLS/UDP
+
+**Gateway Load Balancer**
+
+- Deploy, scale, and manage a fleet of 3rd party network virtual appliances in AWS (Triển khai, thay đổi quy mô và quản lý nhóm thiết bị mạng ảo của bên thứ 3 trong AWS)
+
+**Elastic Load Balancer**
+**- Sticky Sessions:**
+**- Cross Zone Load Balancing:**
+**- Connection Drainning:**
+- Connection Drainning - for CLB
+- Deregistration Delay - for ALB & NLB
+
+**Auto Scaling Groups**
