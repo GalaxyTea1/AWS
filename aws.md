@@ -316,13 +316,19 @@ Tùy thuộc công nghệ Load Balancing mà các thuật toán khác nhau sẽ 
 
 - Support for TCP/TLS/UDP
 
+![](https://res.cloudinary.com/boo-it/image/upload/v1669190112/aws/nlb_1.png)
+
 **Gateway Load Balancer**
 
 - Deploy, scale, and manage a fleet of 3rd party network virtual appliances in AWS (Triển khai, thay đổi quy mô và quản lý nhóm thiết bị mạng ảo của bên thứ 3 trong AWS)
 
+![](https://res.cloudinary.com/boo-it/image/upload/v1669191904/aws/glb_1.png)
+
 **Elastic Load Balancer**
 **- Sticky Sessions:**
+![](https://res.cloudinary.com/boo-it/image/upload/v1669469170/aws/sticky_ss.png)
 **- Cross Zone Load Balancing:**
+![](https://res.cloudinary.com/boo-it/image/upload/v1669475504/aws/cross_zone.png)
 **- Connection Drainning:**
 - Connection Drainning - for CLB
 - Deregistration Delay - for ALB & NLB
