@@ -150,8 +150,14 @@ systemctl enable httpd
 echo"$(hostname -f)"> /var/www/html/index.html
 
 ```
+![](https://res.cloudinary.com/boo-it/image/upload/v1669642430/aws/lifecycle.png)
 
-  
+**Note**:
+Chọn loại EC2 cho phù hợp
+
+- Đối với môi trường lại Test/dev, bạn có thể sử dụng loại T
+Với các môi trường Product, có thể chọn loại M hoặc R (loại R cần khi dùng nhiều RAM) hơn.
+- Với các loại C, G2, dùng cho các trường hợp đòi hỏi xử lý cao như các website cần phân tích nhiều, hoặc gaming.  
 
 ### **EBS Volume**
 
@@ -327,10 +333,23 @@ Tùy thuộc công nghệ Load Balancing mà các thuật toán khác nhau sẽ 
 **Elastic Load Balancer**
 **- Sticky Sessions:**
 ![](https://res.cloudinary.com/boo-it/image/upload/v1669469170/aws/sticky_ss.png)
+>Như vậy sticky session giúp bạn giữ lại phiên làm việc, các request sẽ được gửi tới cùng 1 máy EC2
+Note: Sticky note là vô dụng với scale
+
 **- Cross Zone Load Balancing:**
 ![](https://res.cloudinary.com/boo-it/image/upload/v1669475504/aws/cross_zone.png)
 **- Connection Drainning:**
 - Connection Drainning - for CLB
 - Deregistration Delay - for ALB & NLB
+
+Khi một ứng dụng scale in (xóa server đi), nó cần thời gian để xử lý nốt các request hiện đang có trên EC2 đó tránh việc website của bạn bị gián đoạn, và thời gian đó là Connection Draining
+
+**Summary**
+So sánh đơn giản về sự khác nhau 3 LB này:
+ALB: (Application Loadblancing): Trong mô hình OSI, nó nằm ở layer 7 (tầng Application) hỗ trợ tốt về HTTP/HTTPS, Config SSL, không hỗ trợ Elastic IP
+
+NLB: (Network Loadblancing) : nằm ở layer 4 (tầng Transport) hỗ trợ tốt về TCP/UDP, Config SSL cũng được, hỗ trợ Elastic IP (EIP)
+
+CLB: (Classic Loadblancing): Đây là LB cổ điển, AWS thay thế nó bằng ALB, nó không hỗ trợ tốt về một số điểm như là: LB multiple port trên cùng Interface, không hỗ trợ config target bằng IP, không hỗ trợ Web socket.
 
 **Auto Scaling Groups**
