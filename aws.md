@@ -352,4 +352,48 @@ NLB: (Network Loadblancing) : nằm ở layer 4 (tầng Transport) hỗ trợ t�
 
 CLB: (Classic Loadblancing): Đây là LB cổ điển, AWS thay thế nó bằng ALB, nó không hỗ trợ tốt về một số điểm như là: LB multiple port trên cùng Interface, không hỗ trợ config target bằng IP, không hỗ trợ Web socket.
 
+Tuy NLB ở layer 4 nên nó nhanh hơn so với ALB, phù hợp với những hệ thống chịu tải cao.. nhưng ALB hoạt động layer 7 có nhiều tính năng hơn so với NLB ngoài ra ALB có thể hoạt động với gRPC á... 
+
+**gRPC là gì?**
+Trước hết gRPC theo google giới thiệu:
+gRPC is a modern open source high performance RPC framework that can run in any environment. It can efficiently connect services in and across data centers with pluggable support for load balancing, tracing, health checking and authentication. It is also applicable in last mile of distributed computing to connect devices, mobile applications and browsers to backend services.
+
+gRPC là một RPC framework giúp bạn kết nối giữa các service trong hệ thống, nó hỗ trợ load balancing, tracing, health checking và authentication hỗ trợ từ mobile, trình duyệt cho tới back-end service.
+
+gRPC sử dụng Protocol Buffer để transfer data thay vì JSON/XML truyền thống nên tốc độ được gia tăng đáng kể, ngoài ra nó cũng dùng RPC thay cho REST API. Trong việc thiết kế API sự khác biệt giữa REST API với RPC là REST được thiết kế tập trung vào Resource còn RPC thì tập trung vào action.
+
 **Auto Scaling Groups**
+AWS Auto Scaling là tính năng tự động nhân rộng để đảm bảo rằng các phiên bản Amazon EC2 đủ để chạy các ứng dụng của bạn. Bạn có thể tạo một nhóm AWS Auto Scaling trong các phiên bản EC2. Bạn có thể chỉ định số lượng phiên bản EC2 tối thiểu trong nhóm đó và tự động mở rộng sẽ duy trì và đảm bảo số lượng phiên bản EC2 tối thiểu.
+
+Bạn cũng có thể chỉ định số lượng phiên bản EC2 tối đa trong mỗi nhóm tự động mở rộng để AWS Auto Scaling đảm bảo các phiên bản không bao giờ vượt quá giới hạn tối đa đó. Bạn cũng có thể chỉ định các chính sách dung lượng và tự động mở rộng mong muốn cho phần AWS Auto Scailing trong Amazon EC2. Bằng cách sử dụng chính sách mở rộng, AWS Auto Scaling có thể khởi chạy hoặc chấm dứt các phiên bản EC2 tùy theo nhu cầu.
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670076378/aws/auto_scaling_gr.png)
+
+**ASG Attributes**
+- **A Lauch Template**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670078074/aws/ASG_Lauch_Template.png)
+
+- **Min Size/ Max Size/ Initial**
+- **Scaling Policies**
+
+**CloudWatch Alarms & Scaling**
+Thông báo về CPU trung bình hoặc tuỳ chỉnh số liệu
+-> Tăng hoặc giảm số lượng phiên bản EC2 để phù hợp
+
+**Create ASG**
+- **Firstly, create template**
+![](https://res.cloudinary.com/boo-it/image/upload/v1670078656/aws/templateASG.png)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670078790/aws/templateASG2.png)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670078914/aws/templateASG3.png)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670078914/aws/templateASG4.png)
+
+- **Secondly**
+![](https://res.cloudinary.com/boo-it/image/upload/v1670079201/aws/createASG.png)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670079201/aws/createASG2.png)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670079201/aws/createASG3.png)
