@@ -397,3 +397,15 @@ Thông báo về CPU trung bình hoặc tuỳ chỉnh số liệu
 ![](https://res.cloudinary.com/boo-it/image/upload/v1670079201/aws/createASG2.png)
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1670079201/aws/createASG3.png)
+
+**Scaling Policies**
+- **Target Tracking Scaling**
+Most simple and easy to set-up
+Ex: ASG CPU around 40%
+- **Simple/ Step Scaling**
+CloudWatch alarm is triggered (CPU > 70% -> add 2 units)
+CloudWatch alarm is triggered (CPU < 40% -> remove 2 units)
+- **Scheduled Actions**
+Ex: 5pm add 2 units...
+- **Predict Scaling** 
+Continuously forecast load and  schedule scaling ahead (liên tục dự báo tải và lên lịch mở rộng quy mô trước)
