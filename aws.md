@@ -409,3 +409,14 @@ CloudWatch alarm is triggered (CPU < 40% -> remove 2 units)
 Ex: 5pm add 2 units...
 - **Predict Scaling** 
 Continuously forecast load and  schedule scaling ahead (liên tục dự báo tải và lên lịch mở rộng quy mô trước)
+
+**RDS**
+- RDS stands for Relational Database Service (cho phép setup các thao tác, scale csdlqh trên AWS)
+- Support: Postgres, MySQL, MariaDB, Oracle, Microsoft SQL Server, Aurora
+
+**Amazon Aurora**
+
+**Aurora Security**
+No SSH available exept on RDS Custom
+
+**ElastiCache**
