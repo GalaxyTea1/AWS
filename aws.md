@@ -414,6 +414,50 @@ Continuously forecast load and  schedule scaling ahead (liên tục dự báo t�
 - RDS stands for Relational Database Service (cho phép setup các thao tác, scale csdlqh trên AWS)
 - Support: Postgres, MySQL, MariaDB, Oracle, Microsoft SQL Server, Aurora
 
+Amazon RDS sẽ đảm nhận các tác vụ khó hay các tác vụ quản lý:
+
+- Phân bổ CPU, IOPS hay storage một cách tuỳ biến
+- RDS sử dụng AWS backup service cho việc backup data, tự động phát hiện lỗi và recovery
+- Không support việc access RDS instance thông qua shell
+- Có thể backup tự động hay thủ công Snapshot
+- Khả năng tự đồng bộ cao giữa primary và secondary
+- Kiểm soát được việc access vào RDS thông qua IAM, bảo vệ database bằng cách đẩy lên virtual private cloud
+
+**RDS - Storage Auto Scaling**
+
+Automatically modify storage if:
+- Free storage is less than 10% of allocated storage
+- Low-storage last at least 5 minutes
+- 6 houers have passed since last modification
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670757902/aws/RDS_AutoScaling.png)
+
+**RDS - Replica & Multi AZ**
+
+Read replicas là bản sao của main db được nhân rộng ra nhằm phục vụ cho việc đọc dữ liệu từ nó
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670757963/aws/RSD_ReadReplica.png)
+
+**Ví dụ về trường hợp sử dụng RR**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670759144/aws/ex_rep.png)
+
+**RDS - Disaster Recovery**
+- SYNC replication
+- Sử dụng chung 1 DNS endpoint
+- Không sử dụng cho scaling
+- Read Replicas có thể setup như là Multi AZ cho Disaster Recovery
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670758102/aws/RDS_DisasterRecovery.png)
+
+**RDS - From Single AZ To Multi Az**
+Các hoạt động:
+- Tạo 1 snapshot
+- DB mới được restored từ snapshot sang AZ mới
+- Synchronyze giữa 2 DB
+![](https://res.cloudinary.com/boo-it/image/upload/v1670758142/aws/RDS_fromSingleAZtoMultipleAZ.png)
+
+
 **Amazon Aurora**
 
 **Aurora Security**
