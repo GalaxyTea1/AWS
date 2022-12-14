@@ -428,7 +428,7 @@ Amazon RDS sẽ đảm nhận các tác vụ khó hay các tác vụ quản lý:
 Automatically modify storage if:
 - Free storage is less than 10% of allocated storage
 - Low-storage last at least 5 minutes
-- 6 houers have passed since last modification
+- 6 hours have passed since last modification
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1670757902/aws/RDS_AutoScaling.png)
 
@@ -459,8 +459,48 @@ Các hoạt động:
 
 
 **Amazon Aurora**
+Là một cơ sở dữ liệu quan hệ được cung cấp bởi Amazon, được quản lý đầy đủ, tương thích với MySQL và PostgreSQL và được xây dựng cho cloud, kết hợp hiệu suất và tính khả dụng của các cơ sở dữ liệu thương mại cao cấp với tính đơn giản và hiệu quả về chi phí của các cơ sở dữ liệu mã nguồn mở.
+
+Aurora nhanh gấp 5 lần cơ sở dữ liệu MySQL tiêu chuẩn và nhanh gấp 3 lần các cơ sở dữ liệu PostgreSQL chuẩn mà không cần yêu cầu thay đổi gì đến các ứng dụng có sẵn. Nó cung cấp tính bảo mật, tính khả dụng và độ tin cậy của các cơ sở dữ liệu cấp thương mại với chi phí 1/10. 
+
+Aurora được quản lý đầy đủ bởi Amazon Relational Database Service (RDS), giúp tự động hóa các nhiệm vụ quản trị tốn nhiều thời gian như cung cấp phần cứng, thiết lập cơ sở dữ liệu, vá lỗi và sao lưu.
+
+Ngoài ra Aurora có thể có 15 replicas trong khi MySQL chỉ có 5
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1671001391/aws/aurora.png)
+
+**Aurora DB Cluster**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1671001461/aws/aurora_2.png)
+
+Note: Writer Endpoint n Reader Endpoint
 
 **Aurora Security**
-No SSH available exept on RDS Custom
+- **At-rest encryption** (mã hóa trong quá trình nghỉ ngơi)
+- **In-flight encryption** (mã hóa trong quá trình vận chuyển)
+- **IAM Authentication**
+- **Security Groups**
+- **No SSH available exept on RDS Custom**
+- **Audit Logs can be enabled**
 
 **ElastiCache**
+Hai công nghệ cache phổ biến và được sử dụng nhiều nhất là Memcached and Redis. ElastiCache hỗ trợ cả hai loại trên.
+
+ElastiCache là một dịch vụ của AWS mà cho phép ta tạo một clusters Memcached hoặc Redis một cách dễ dàng thay vì ta phải tự cài đặt và cấu hình nhiều thứ
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1670758205/aws/RDS_DBCache.png)
+
+**User Session Store**
+![](https://res.cloudinary.com/boo-it/image/upload/v1670758244/aws/userSesionStore.png)
+
+**ElastiCache - Redis & Memcached**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1671004470/aws/compareCache.png)
+
+**Caching Implementation Considerations**
+- **Lazy Load / Cache-Aside / Lazy Population**
+- **Write Through - Add or Update cache when db is updated**
+- **Cache Evictions and Time-to-live**
+
+
+**Route 53**
