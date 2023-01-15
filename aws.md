@@ -550,3 +550,17 @@ A container for records that define how to route traffic to a domain (example.co
 traffic on the Internet (public domain names) application1.mypublicdomain.com
 - Private Hosted Zones – contain records that specify how you route 
 traffic within one or more VPCs (private domain names) application1.company.internal
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1673772623/aws/HostedZone.png)
+
+###Route53 - TTL (Time To Live)
+- **High TTL - e.g., 24hr**: 
+    - Less traffic
+    - Possibly outdated records
+- **Low TTL** - e.g.,60sec**:
+    - More traffic (fee $)
+    - Records are outdated for less time
+    - Easy to change records
+
+**Note**: 
+   - Except for Alias records, TTL is mandatory for each DNS record
