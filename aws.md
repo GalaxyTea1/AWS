@@ -1,13 +1,13 @@
 
 # AWS
 
-##What is cloud computing
+## What is cloud computing
 
 The practice of using a network of remote servers hosted on the Internet to store, manage, and process data, rather than a local server or a personal computer.
 
   
 
-##Cloud Providers
+## Cloud Providers
 
 - Someone else owns the servers
 
@@ -19,7 +19,7 @@ The practice of using a network of remote servers hosted on the Internet to stor
 
   
 
-##AWS Global Infrastructure
+## AWS Global Infrastructure
 
 - AWS Regions
 
@@ -33,7 +33,7 @@ The practice of using a network of remote servers hosted on the Internet to stor
 
   
 
-##AWS Regions
+## AWS Regions
 
 - AWS has Regions all around the word
 
@@ -45,7 +45,7 @@ The practice of using a network of remote servers hosted on the Internet to stor
 
   
 
-##Choose AWS Region
+## Choose AWS Region
 
 - Compliance
 
@@ -59,7 +59,7 @@ Choose a region nearest customer
 
   
 
-##Zones
+## Zones
 
 - Usually 3, min is 2, max is 6
 
@@ -67,7 +67,7 @@ Choose a region nearest customer
 
   
 
-##IAM
+## IAM
 
 - Link user: https://trong-aws.signin.aws.amazon.com/console
 
@@ -101,7 +101,7 @@ Choose a region nearest customer
 
 - Condition: conditions for when this policy is in effect (optinal)
 
-##Connect SSH
+## Connect SSH
 
 - PuTTY Gen Load key (save private key)
 
@@ -113,7 +113,7 @@ Choose a region nearest customer
 
   
 
-##AMI
+## AMI
 
 - AMI = Amazon Machine Image
 
@@ -135,7 +135,7 @@ Choose a region nearest customer
 
   
 
-##User data
+## User data
 
 ```#!/bin/bash
 
@@ -159,7 +159,7 @@ Chọn loại EC2 cho phù hợp
 Với các môi trường Product, có thể chọn loại M hoặc R (loại R cần khi dùng nhiều RAM) hơn.
 - Với các loại C, G2, dùng cho các trường hợp đòi hỏi xử lý cao như các website cần phân tích nhiều, hoặc gaming.  
 
-##EBS Volume
+## EBS Volume
 
 An EBS (Elastic Block Store) Volume is a network drive you can attach
 
@@ -180,9 +180,9 @@ EBS – Delete on Termination attribute (default: terminated when instance termi
 
   
 
-##EBS Volume Types
+## EBS Volume Types
 
-####6 types:
+#### 6 types:
 
 - gp2/gp3(SSD): Genaral purpose, balances price & performance
 
@@ -194,7 +194,7 @@ EBS – Delete on Termination attribute (default: terminated when instance termi
 
   
 
-##EFS
+## EFS
 
 Managed NFS (network file system). Là một dịch vụ lưu trữ ở cấp độ tệp, EFS là bộ lưu trữ có tính sẵn sàng cao có thể được nhiều máy chủ sử dụng cùng một lúc
 
@@ -208,7 +208,7 @@ EBS sẽ phải trả cho dung lượng được cung cấp trước, EFS xài b
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1667976670/aws/efs_filesystem.png)
 
-##Comparison EBS & EFS
+## Comparison EBS & EFS
 **Storage Type**
 
 EBS (elastic block storage) & EFS (elastic file system), as the name suggests EBS is block-level storage and EFS is file-level storage.
@@ -266,7 +266,7 @@ EFS is the only storage in which you’ll pay for is exactly what you use, as th
 -   **Web server support**: EFS is a highly robust throughput file system and is capable of enabling web serving applications, such as websites, or blogs. (EFS là một hệ thống tệp thông lượng mạnh mẽ và có khả năng kích hoạt các ứng dụng phục vụ web, chẳng hạn như trang web hoặc blog.)
 -   **Application development and testing:** Among different storages provided by Amazon EFS is the only one that provides a shared file system needed to share code and files. (Trong số các kho lưu trữ khác nhau do Amazon EFS cung cấp, đây là kho lưu trữ duy nhất cung cấp hệ thống tệp dùng chung cần thiết để chia sẻ mã và tệp.)
 
-##Load balancing
+## Load balancing
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1667983459/aws/load_balancer.png)
 
@@ -291,7 +291,7 @@ Tùy thuộc công nghệ Load Balancing mà các thuật toán khác nhau sẽ 
 -   **Fastest**
 -   **Least Connections**
 
-##Classic Load Balancers (v1)
+## Classic Load Balancers (v1)
 
 - Supports TCP, HTTP & HTTPS
 
@@ -311,26 +311,26 @@ Tùy thuộc công nghệ Load Balancing mà các thuật toán khác nhau sẽ 
 
   
 
-##Application Load Balancer
+## Application Load Balancer
 
 - Support for HTTP/2 and WebSocket
 
 - Support redirects
 
 
-##Network Load Balancer
+## Network Load Balancer
 
 - Support for TCP/TLS/UDP
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1669190112/aws/nlb_1.png)
 
-##Gateway Load Balancer
+## Gateway Load Balancer
 
 - Deploy, scale, and manage a fleet of 3rd party network virtual appliances in AWS (Triển khai, thay đổi quy mô và quản lý nhóm thiết bị mạng ảo của bên thứ 3 trong AWS)
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1669191904/aws/glb_1.png)
 
-##Elastic Load Balancer
+## Elastic Load Balancer
 **- Sticky Sessions:**
 ![](https://res.cloudinary.com/boo-it/image/upload/v1669469170/aws/sticky_ss.png)
 >Như vậy sticky session giúp bạn giữ lại phiên làm việc, các request sẽ được gửi tới cùng 1 máy EC2
@@ -344,7 +344,7 @@ Note: Sticky note là vô dụng với scale
 
 Khi một ứng dụng scale in (xóa server đi), nó cần thời gian để xử lý nốt các request hiện đang có trên EC2 đó tránh việc website của bạn bị gián đoạn, và thời gian đó là Connection Draining
 
-##Summary
+## Summary
 So sánh đơn giản về sự khác nhau 3 LB này:
 ALB: (Application Loadblancing): Trong mô hình OSI, nó nằm ở layer 7 (tầng Application) hỗ trợ tốt về HTTP/HTTPS, Config SSL, không hỗ trợ Elastic IP
 
@@ -450,7 +450,7 @@ Read replicas là bản sao của main db được nhân rộng ra nhằm phục
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1670758102/aws/RDS_DisasterRecovery.png)
 
-##RDS - From Single AZ To Multi Az
+## RDS - From Single AZ To Multi Az
 Các hoạt động:
 - Tạo 1 snapshot
 - DB mới được restored từ snapshot sang AZ mới
@@ -503,7 +503,7 @@ ElastiCache là một dịch vụ của AWS mà cho phép ta tạo một cluster
 - **Cache Evictions and Time-to-live**
 
 
-##Route 53
+## Route 53
 **DNS**
 Domain Nam System which translates the human friendly hostnames into the machine IP addresses (google.com -> 172.217.18.36)
 
@@ -520,12 +520,12 @@ Domain Nam System which translates the human friendly hostnames into the machine
 **How DNS works**
 ![](https://res.cloudinary.com/boo-it/image/upload/v1673181144/aws/DNS_work.png)
 
-###Amazon Route 53
+### Amazon Route 53
 Amazon Route 53 is a highly available, scalable and Authoritative (the customer can update the DNS records) Domain Name System (DNS) web service.
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1673181269/aws/Route53.png)
 
-###Route 53 Records
+### Route 53 Records
 Each record contains:
 - Domain/ subdomain Name - eg: example.com
 - Record Type - eg: A, AAAA...
@@ -533,7 +533,7 @@ Each record contains:
 - Routing policy: how route 53 responds to queries
 - TTL: amount of time the record cached at DNS Resolvers
 
-###Route 53 – Record Types
+### Route 53 – Record Types
 - A: maps a hostname to IPv4
 - AAAA: maps a hostname to IPv6
 - CNAME: maps a hostname to another hostname
@@ -544,7 +544,7 @@ Each record contains:
 - NS - Name Servers for the Hosted Zone
     - Control how traffic is routed for a domain
 
-###Route 53 – Hosted Zones
+### Route 53 – Hosted Zones
 A container for records that define how to route traffic to a domain (example.com) and its subdomains (zizi.example.com)
 - Public Hosted Zones – contains records that specify how to route 
 traffic on the Internet (public domain names) application1.mypublicdomain.com
@@ -553,7 +553,7 @@ traffic within one or more VPCs (private domain names) application1.company.inte
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1673772623/aws/HostedZone.png)
 
-###Route53 - TTL (Time To Live)
+### Route53 - TTL (Time To Live)
 - **High TTL - e.g., 24hr**: 
     - Less traffic
     - Possibly outdated records
