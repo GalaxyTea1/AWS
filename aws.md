@@ -565,4 +565,19 @@ traffic within one or more VPCs (private domain names) application1.company.inte
 **Note**: 
    - Except for Alias records, TTL is mandatory for each DNS record
 
-#### CName & Alias
+### CName & Alias
+- **CName**:
+    - Points a hostname to any orther hostname (app.domain.com => blabla.anything.com)
+    - Only for Non Root Domain
+- **Alias**:
+    - Points a hostname to an AWS Resource (app.domain.com => blabal.amazonaws.com)
+    - Works for Root Domain & Non Root Domain
+    - Free of charge
+    - Native health check
+    - Alias records can't set the TTL
+    - Can't set an Alias record for an EC2 DNS name
+
+### Routing Policy
+Simple
+Weight
+Latency based
