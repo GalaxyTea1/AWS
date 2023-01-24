@@ -564,3 +564,5 @@ traffic within one or more VPCs (private domain names) application1.company.inte
 
 **Note**: 
    - Except for Alias records, TTL is mandatory for each DNS record
+
+#### CName & Alias
