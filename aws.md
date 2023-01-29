@@ -578,6 +578,22 @@ traffic within one or more VPCs (private domain names) application1.company.inte
     - Can't set an Alias record for an EC2 DNS name
 
 ### Routing Policy
-Simple
-Weight
-Latency based
+- Simple
+    - Typical route traffic to a single resource
+    - Can specify multiple values in the same record (a random one is chosen by the client)
+    - Can not be associated with Health Checks
+- Weight
+    - Control % of the requests that go to each specific resource.
+    - Asign each record a relative weight:
+        - traffic (%) = weight for  a specific record / Sum of all the weights for all records
+    - DNS records must have the same name and type
+    - Can be associated with Health Checks
+    - Use case: load balancing between regions, testing new application version...
+- Latency based
+    - Redirect to the resource that has least latency close to us
+    - Can be associated with Health Checks
+- Failover
+
+- Geolocation
+- Geoproximity
+- Multiple Value
