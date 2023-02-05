@@ -593,7 +593,19 @@ traffic within one or more VPCs (private domain names) application1.company.inte
     - Redirect to the resource that has least latency close to us
     - Can be associated with Health Checks
 - Failover
-
+![](https://res.cloudinary.com/boo-it/image/upload/v1675606285/aws/failover.png)
 - Geolocation
+     - This routing is based on user location
+    - Specify location by continent, country
+    - Should create default record (in case there is no match on location)
+    - Can be associated with Health Checks
 - Geoproximity
+    - Route traffic to your resources based on the geographic location of users and resources
 - Multiple Value
+    - Use when routing traffic to multiple resources
+    - Up to 8 healthy records are returned for each Multi-Value query
+    - Can be associated with Health Checks (returns only values for healthy resources)
+- Health Checks
+    - HTTP Health Checks are only for public resources
+    - About 15 global health checkers will check the endpoint health
+    - Route 53 health checker are outside the VPC -> they can not access private endpoints (You can create CloudWatch Metric and associate a CloudWatch Alarm, then create a Health Check that checks the alarm itself)
