@@ -621,9 +621,11 @@ traffic within one or more VPCs (private domain names) application1.company.inte
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676173816/aws/VPC_subnets.png)
 
 **VPC Diagram**
+
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676191744/aws/VPC_diagram.png)
 
 **Internet Gateways & NAT**
+
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676191721/aws/gateway_nat.png)
 
 ##### 2. Security Groups, Network ACL (NACL), VPC Flow logs
@@ -665,12 +667,16 @@ Load Balancers, ElastiCache, RDS, Aurora, etc…
 ##### 3. Site to Site VPN & Direct Connect 
 **VPC Peering, Endpoints, VPN, DX**
 **VPC Peering**
+
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676193481/aws/VPC_peering.png)
 
 **VPC Endpoints**
-![](https://res.cloudinary.com/boo-it/image/upload/v1676193488/aws/VPC_endpoint.png)
+<p align="center">
+  <img src="https://res.cloudinary.com/boo-it/image/upload/v1676193488/aws/VPC_endpoint.png" />
+</p>
 
 **Site to Site VPN & Direct Connect**
+
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676193492/aws/SiteToSiteVPN.png)
 ### S3 Introduction
 
