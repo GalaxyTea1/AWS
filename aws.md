@@ -609,3 +609,69 @@ traffic within one or more VPCs (private domain names) application1.company.inte
     - HTTP Health Checks are only for public resources
     - About 15 global health checkers will check the endpoint health
     - Route 53 health checker are outside the VPC -> they can not access private endpoints (You can create CloudWatch Metric and associate a CloudWatch Alarm, then create a Health Check that checks the alarm itself)
+
+### VPC Fundamentals (Virtual Private Cloud)
+#### Introduction
+##### 1. VPC, Subnets, Internet Gateways & NAT Gateways
+**VPC**: private network to deploy your resources
+**Subnets**: allow you to partition your network inside your VPC (AZ Resources)
+- A public subnet is a subnet that is accessible from the Internet  
+- A private subnet is a subnet that isn't accessible from the Internet
+- To define access to the Internet and between subnets, we you Route Tables
+![](https://res.cloudinary.com/boo-it/image/upload/v1676173816/aws/VPC_subnets.png)
+
+**VPC Diagram**
+![](https://res.cloudinary.com/boo-it/image/upload/v1676191744/aws/VPC_diagram.png)
+
+**Internet Gateways & NAT**
+![](https://res.cloudinary.com/boo-it/image/upload/v1676191721/aws/gateway_nat.png)
+
+##### 2. Security Groups, Network ACL (NACL), VPC Flow logs
+**NACL & Security Groups**
+NACL (Network ACL)
+- A firewall which controls traffic from and to 
+subnet
+- Can have ALLOW and DENY rules
+- Are attached at the Subnet level
+- Rules only include IP addresses
+
+Security Groups
+- A firewall that controls traffic to and from an 
+ENI / an EC2 Instance
+- Can have only ALLOW rules
+- Rules include IP addresses and other security 
+groups
+
+<p align="center">
+  <img src="https://res.cloudinary.com/boo-it/image/upload/v1676192209/aws/NACL.png" />
+</p>
+<!-- ![](https://res.cloudinary.com/boo-it/image/upload/v1676192209/aws/NACL.png) -->
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1676193212/aws/compare_nacl_sg.png)
+
+**VPC Flow Logs**
+- Capture information about IP traffic going into your interfaces:
+    - VPC Flow Logs
+    - Subnet Flow Logs
+    - Elastic Network Interface Flow Logs
+- Helps to monitor & troubleshoot connectivity issues. Example: 
+    - Subnets to internet
+    - Subnets to subnets
+    - Internet to subnets
+- Captures network information from AWS managed interfaces too: Elastic 
+Load Balancers, ElastiCache, RDS, Aurora, etc… 
+- VPC Flow logs data can go to S3 / CloudWatch Logs
+
+##### 3. Site to Site VPN & Direct Connect 
+**VPC Peering, Endpoints, VPN, DX**
+**VPC Peering**
+![](https://res.cloudinary.com/boo-it/image/upload/v1676193481/aws/VPC_peering.png)
+
+**VPC Endpoints**
+![](https://res.cloudinary.com/boo-it/image/upload/v1676193488/aws/VPC_endpoint.png)
+
+**Site to Site VPN & Direct Connect**
+![](https://res.cloudinary.com/boo-it/image/upload/v1676193492/aws/SiteToSiteVPN.png)
+### S3 Introduction
+
+
