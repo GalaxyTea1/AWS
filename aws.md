@@ -679,5 +679,78 @@ Load Balancers, ElastiCache, RDS, Aurora, etc…
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676193492/aws/SiteToSiteVPN.png)
 ### S3 Introduction
+- Amazon S3 is one of the main building blocks of AWS
+- It’s advertised as ”infinitely scaling” storage 
+- Many websites use Amazon S3 as a backbone
+- Many AWS services use Amazon S3 as an integration as well
+- We’ll have a step-by-step approach to S3
 
+#### Use cases
+- Backup and storage
+- Disaster Recovery
+- Archive
+- Hybrid Cloud storage
+- Application hosting
+- Media hosting
+- Data lakes & big data analytics
+- Software delivery
+- Static websit
 
+#### S3 - Security
+- User-Based
+    - IAM Policies – which API calls should be allowed for a specific user from IAM (lệnh gọi API nào sẽ được phép cho một người dùng cụ thể từ IAM)
+- Resource-Based
+    - Bucket Policies – bucket wide rules from the S3 console - allows cross account (bucket wide rules từ bảng điều khiển S3 - cho phép nhiều tài khoản)
+    - Object Access Control List (ACL) – finer grain (can be disabled)
+    - Bucket Access Control List (ACL) – less common (can be disabled)
+- Encryption: encrypt objects in Amazon S3 using encryption keys
+
+ Note: an IAM principal can access an S3 object if
+• The user IAM permissions ALLOW it OR the resource policy ALLOWS it
+• AND there’s no explicit DENY
+
+#### Static Website
+![](https://res.cloudinary.com/boo-it/image/upload/v1676793933/aws/demo_static_web.png)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1676793734/aws/demo_static_web2.png)
+
+#### S3 -Versioning
+<p align="center">
+  <img src="https://res.cloudinary.com/boo-it/image/upload/v1676795072/aws/S3_version.png" />
+</p>
+
+#### Replication
+- Must enable Versioning in source and destination buckets
+- Cross-Region Replication (CRR)
+- Same-Region Replication (SRR)
+- Buckets can be in different AWS accounts
+- Copying is asynchronous
+- Must give proper IAM permissions to S3
+- Use cases:
+    - CRR – compliance, lower latency access, replication across accounts
+    - SRR – log aggregation, live replication between production and test 
+accounts
+
+**Note**
+- After you enable Replication, only new objects are replicated
+- Optionally, you can replicate existing objects using S3 Batch Replication
+    - Replicates existing objects and objects that failed replication
+- For DELETE operations
+    - Can replicate delete markers from source to target (optional setting)
+    - Deletions with a version ID are not replicated (to avoid malicious deletes)
+- There is no “chaining” of replication
+    - If bucket 1 has replication into bucket 2, which has replication into bucket 3
+    - Then objects created in bucket 1 are not replicated to bucket 3
+
+#### Storage Classes
+- Amazon S3 Standard for frequent data access: Suitable for a use case where the latency should below. Example: Frequently accessed data will be the data of students’ attendance, which should be retrieved quickly. (Amazon S3 Tiêu chuẩn để truy cập dữ liệu thường xuyên: Phù hợp với trường hợp sử dụng mà độ trễ phải thấp hơn. Ví dụ: Dữ liệu thường xuyên truy cập sẽ là dữ liệu điểm danh của học sinh, dữ liệu này cần được truy xuất nhanh chóng)
+
+- Amazon S3 Standard for infrequent data access: Can be used where the data is long-lived and less frequently accessed. Example: Students’ academic records will not be needed daily, but if they have any requirement, their details should be retrieved quickly. (Amazon S3 Standard dành cho truy cập dữ liệu không thường xuyên: Có thể được sử dụng khi dữ liệu tồn tại lâu và ít truy cập thường xuyên. Ví dụ: Hồ sơ học tập của sinh viên sẽ không cần thiết hàng ngày, nhưng nếu họ có bất kỳ yêu cầu nào, thông tin chi tiết của họ sẽ được truy xuất nhanh chóng)
+
+- Amazon Glacier: Can be used where the data has to be archived, and high performance is not required. Example: Ex-student’s old record (like admission fee) will not be needed daily, and even if it is necessary, low latency is not required. (Có thể được sử dụng khi dữ liệu phải được lưu trữ và không yêu cầu hiệu suất cao. Ví dụ: Hồ sơ cũ của cựu sinh viên (như phí nhập học) sẽ không cần thiết hàng ngày và ngay cả khi cần thiết, độ trễ thấp cũng không cần thiết)
+
+- One Zone-IA Storage Class: It can be used where the data is infrequently accessed and stored in a single region. Example: Student’s report card is not used daily and stored in a single availability region (i.e., school). (Nó có thể được sử dụng khi dữ liệu không được truy cập thường xuyên và được lưu trữ trong một vùng duy nhất. Ví dụ: Phiếu điểm của học sinh không được sử dụng hàng ngày và được lưu trữ ở một khu vực sẵn có duy nhất (ví dụ: trường học))
+
+- Amazon S3 Standard Reduced Redundancy storage: Suitable for a use case where the data is non-critical and reproduced quickly. Example: Books in the library are non-critical data and can be replaced if lost. (Thích hợp cho trường hợp sử dụng khi dữ liệu không quan trọng và được sao chép nhanh chóng. Ví dụ: Sách trong thư viện là dữ liệu không quan trọng và có thể được thay thế nếu bị mất)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1676813224/aws/storage_classes.jpg)
