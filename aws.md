@@ -754,3 +754,13 @@ accounts
 - Amazon S3 Standard Reduced Redundancy storage: Suitable for a use case where the data is non-critical and reproduced quickly. Example: Books in the library are non-critical data and can be replaced if lost. (Thích hợp cho trường hợp sử dụng khi dữ liệu không quan trọng và được sao chép nhanh chóng. Ví dụ: Sách trong thư viện là dữ liệu không quan trọng và có thể được thay thế nếu bị mất)
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676813224/aws/storage_classes.jpg)
+
+#### AWS CLI
+- Dry Run
+![](https://res.cloudinary.com/boo-it/image/upload/v1678023029/aws/dry-run.png)
+- STS Decode Errors
+![](https://res.cloudinary.com/boo-it/image/upload/v1678023692/aws/sts_decode.png)
+
+#### AWS Instance Metadata
+
+#### AWS SDK
