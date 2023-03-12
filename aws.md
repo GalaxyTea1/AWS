@@ -758,9 +758,25 @@ accounts
 #### AWS CLI
 - Dry Run
 ![](https://res.cloudinary.com/boo-it/image/upload/v1678023029/aws/dry-run.png)
+
 - STS Decode Errors
 ![](https://res.cloudinary.com/boo-it/image/upload/v1678023692/aws/sts_decode.png)
 
 #### AWS Instance Metadata
+<code>[ec2-user@ip-172-31-3-136~]$ curl http://169.254.169/254/lastest/
+dynamic
+meta-data</code>
 
-#### AWS SDK
+**Read more**:
+- Profiles
+- CLI with MFA
+- AWS SDK
+- Exponential Backoff & Service Limit Increase
+- Credentials Provider Chain
+
+#### CloudFont
+#### ECS, ECR & Fargate Docker
+#### BeanStalk
+#### SQS, SNS & Kinesis
+#### Lamda
+#### KMS
