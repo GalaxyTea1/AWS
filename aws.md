@@ -775,6 +775,61 @@ meta-data</code>
 - Credentials Provider Chain
 
 #### CloudFont
+- AWS CloudFront is a globally-distributed network offered by Amazon Web Services, which securely transfers content such as software, SDKs, videos, etc., to the clients, with high transfer speed.
+- Content Delivery Network(CDN)
+- Improves read performance, content 
+is cached at the edge (216 Point of Presence globally)
+- DDoS protection, integration with Shield, AWS Web Application Firewall
+- Can expose external HTTPS and can talk to internal HTTPS backends
+
+**There are three core concepts that you need to understand to start using CloudFront: distributions, origins, and cache control.**
+
+##### Distributions
+To use Amazon CloudFront, you start by creating a distribution, which is identified by a DNS domain name. To serve files from Amazon CloudFront, you simply use the distribution domain name in place of your website’s domain name; the rest of the file paths stay unchanged.
+
+##### Origins
+
+When you create a distribution, you must specify the DNS domain name of the origin — the Amazon S3 bucket or HTTP server — from which you want Amazon CloudFront to get the definitive version of your objects (web files).
+
+##### Cache-Control
+Once requested and served from an edge location, objects stay in the cache until they expire or are evicted to make room for more frequently requested content.
+##### CloudFont Origin
+- S3 bucket (can be private, need to setup Origin Access Identity + S3 bucket policy)
+- Custom Origin (HTTP)
+    - Application Load Balancer
+    - EC2 instance 
+    - S3 website (must first enable the bucket as a static S3 website) 
+    - Any HTTP backend 
+
+##### CloudFont at a high level
+![](https://res.cloudinary.com/boo-it/image/upload/v1679679375/aws/CF_at_high_level.png)
+##### CloudFont - S3 as an Origin
+![](https://res.cloudinary.com/boo-it/image/upload/v1679679383/aws/s3_origin.png)
+
+##### CloudFront vs S3 Cross Region Replication
+- CloudFront:
+    - Global Edge network
+    - Files are cached for a TTL (maybe a day)
+    - Great for static content that must be available everywhere
+    
+- S3 Cross Region Replication:
+    - Must be setup for each region you want replication to happen
+    - Files are updated in near real-time
+    - Read only
+    - Great for dynamic content that needs to be available at low-latency in few region
+##### CloudFront Caching
+Reducing the number of requests to our origin server directly is one of the goals of using CloudFront. Due to CloudFront caching, more objects are served from CloudFront edge locations, which are nearer to users. This reduces latency and minimizes the load on our origin server.
+(Giảm số lượng yêu cầu trực tiếp tới máy chủ nguồn của chúng tôi là một trong những mục tiêu khi sử dụng CloudFront. Nhờ bộ đệm của CloudFront, nhiều đối tượng được phục vụ từ các vị trí cạnh CloudFront gần hơn với người dùng. Điều này giảm độ trễ và giảm thiểu tải trên máy chủ nguồn)
+
+We can cache on multiple things:
+- Headers
+- Session Cookies
+- Query string parameters
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1679830811/aws/cloundfont_cache.png)
+
+In the diagram, we can see that when a client makes a request to the CloudFront Edge Locations the cache will be checked on the basics of the values of headers and the cookies and the query string parameters. And then the cache has an expiry based on the time to live in the cache, and if the value is not in the cache, then the query, or the entire HTTPS request, is forwarded directly to the origin, and then the cache is filled by query response
+
 #### ECS, ECR & Fargate Docker
 #### BeanStalk
 #### SQS, SNS & Kinesis
