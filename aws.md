@@ -831,6 +831,24 @@ We can cache on multiple things:
 In the diagram, we can see that when a client makes a request to the CloudFront Edge Locations the cache will be checked on the basics of the values of headers and the cookies and the query string parameters. And then the cache has an expiry based on the time to live in the cache, and if the value is not in the cache, then the query, or the entire HTTPS request, is forwarded directly to the origin, and then the cache is filled by query response
 
 #### ECS, ECR & Fargate Docker
+##### ECS (Elastic Container Service)
+- ECS is a managed container orchestration platform that enables fast deployment and scaling of containerized workloads.
+
+**Docker containers management on AWS**
+
+- Amazon Elastic Container Service (Amazon ECS)
+- Amazon Elastic Kubernetes Service (Amazon EKS)
+- AWS Fargate (serverless)
+- Amazon ECR (store container images)
+
+**Amazon ECS - EC2 Launch Type**
+- Launch Docker containers on AWS = Launch ECS Tasks on ECS Clusters
+- EC2 Launch Type: you must provision & maintain the infrastructure (the EC2 
+instances)
+- Each EC2 Instance must run the ECS Agent to register in the ECS Cluster
+- AWS takes care of starting / stopping containers
+![](https://res.cloudinary.com/boo-it/image/upload/v1680099051/aws/ECS_cluster.png)
+
 #### BeanStalk
 #### SQS, SNS & Kinesis
 #### Lamda
