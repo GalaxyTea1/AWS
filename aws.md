@@ -847,7 +847,66 @@ In the diagram, we can see that when a client makes a request to the CloudFront 
 instances)
 - Each EC2 Instance must run the ECS Agent to register in the ECS Cluster
 - AWS takes care of starting / stopping containers
+
 ![](https://res.cloudinary.com/boo-it/image/upload/v1680099051/aws/ECS_cluster.png)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1680324545/aws/flow_ecs.png)
+
+**Fargate Launch Type**
+The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure. Just register your task definition and Fargate launches the container for you. (serverless) 
+(Kiểu khởi chạy Fargate cho phép bạn chạy ứng dụng được đóng gói thành container mà không cần phải cấu hình và quản lý cơ sở hạ tầng phía sau. Chỉ cần đăng ký định nghĩa tác vụ của bạn và Fargate sẽ khởi chạy container cho bạn. Được gọi là "serverless" - không cần máy chủ riêng)
+- Just create task definitions (Chỉ cần tạo các định nghĩa tác vụ task definitions).
+- AWS just run ECS tasks for you based on the CPU/RAM you need.
+- To scale, just increase the number of tasks.
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1680324369/aws/Fargate.png)
+
+**Load Balancer Integrations**
+- Application Load Balancer supported and works for most use cases (Fargate được hỗ trợ bởi Application Load Balancer (ALB) của AWS và hoạt động cho hầu hết các trường hợp sử dụng. ALB giúp phân phối tải đến các tác vụ Fargate một cách thông minh dựa trên các yêu cầu của khách hàng và trạng thái của các tác vụ đang chạy. Bằng cách kết hợp Fargate với ALB, bạn có thể tạo ra một môi trường có khả năng mở rộng linh hoạt để chạy các ứng dụng web phức tạp.)
+- Network Load Balancer recommended only for high throughput / high performance use cases, or to pair it with AWS Private Link (Network Load Balancer (NLB) là một giải pháp được khuyến nghị cho các trường hợp sử dụng có lưu lượng cao hoặc đòi hỏi hiệu suất cao hơn. NLB hoạt động ở mức độ kết nối mạng và có thể xử lý hàng triệu kết nối trên giây, làm cho nó phù hợp cho các ứng dụng với yêu cầu về lưu lượng mạng cao. NLB cũng được khuyến nghị để kết hợp với AWS Private Link, một dịch vụ cho phép các khách hàng kết nối với các tài nguyên AWS thông qua kết nối mạng riêng ảo (VPN) của họ. Kết hợp NLB và AWS Private Link cho phép khách hàng truy cập các ứng dụng và dịch vụ của bạn một cách an toàn và bảo mật từ các mạng khác nhau, bao gồm mạng công cộng và mạng riêng.)
+-  Elastic Load Balancer supported but not recommended (no advanced features –no Fargate) (ELB không có các tính năng tiên tiến như ALB hoặc NLB, vì vậy nó không phù hợp với các ứng dụng Fargate phức tạp hoặc đòi hỏi tính năng mở rộng và quản lý tải tốt hơn. Ngoài ra, ELB cũng không hỗ trợ Fargate và chỉ hỗ trợ các kiểu khởi chạy container khác như EC2. Vì vậy, nên sử dụng ALB hoặc NLB thay vì ELB để đạt được hiệu quả tối ưu cho ứng dụng)
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1680324946/aws/Load_Balancer_Integrations.png)
+
+**EC2 Launch Type**
+- We get a Dynamic Host Port Mapping if you define only the container port in the task definition
+- ALB finds the right port on your EC2 instance
+- We must allow on EC2 instance's Security Group any port from the ABL's Security Group
+
+**Fargate**
+- Each task has a unique private IP
+- Only define the container port (host port is not applicable)
+
+**Task definition**
+Task definition are metadata in JSON form to tell ECS how to run a Docker container.
+It contains crucial information, such as:
+
+- Image name
+- Port binding for Container and Host
+- Memory and CPU required
+- Environment variables
+- Networking information
+- IAM role
+- Logging configuration (CloudWatch)
+
+We can define up to 10 contains in a Task Definition
+
+**Data Volume EFS**
+- Mount EFS file systems onto ECS tasks
+- Works for both EC2 and Fargate launch types
+- Tasks running in any AZ will share the same data in the EFS file system
+- Fargate + EFS = Serverless
+- Use cases: persistent multi-AZ shared storage for your containers
+
+**Note:** 
+- Amazon S3 cannot be mounted as a file system
+
+<p align="center">
+  <img src="https://res.cloudinary.com/boo-it/image/upload/v1680325945/aws/efs.png" />
+</p>
+
+**ECS Service Auto Scalling**
+
 
 #### BeanStalk
 #### SQS, SNS & Kinesis
