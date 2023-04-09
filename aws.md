@@ -706,8 +706,8 @@ Load Balancers, ElastiCache, RDS, Aurora, etc…
 - Encryption: encrypt objects in Amazon S3 using encryption keys
 
  Note: an IAM principal can access an S3 object if
-• The user IAM permissions ALLOW it OR the resource policy ALLOWS it
-• AND there’s no explicit DENY
+- The user IAM permissions ALLOW it OR the resource policy ALLOWS it
+- AND there’s no explicit DENY
 
 #### Static Website
 ![](https://res.cloudinary.com/boo-it/image/upload/v1676793933/aws/demo_static_web.png)
@@ -890,6 +890,7 @@ It contains crucial information, such as:
 - Logging configuration (CloudWatch)
 
 We can define up to 10 contains in a Task Definition
+![](https://res.cloudinary.com/boo-it/image/upload/v1681018722/aws/task_define.png)
 
 **Data Volume EFS**
 - Mount EFS file systems onto ECS tasks
@@ -906,9 +907,65 @@ We can define up to 10 contains in a Task Definition
 </p>
 
 **ECS Service Auto Scalling**
+- Automatically increase/decrease the desired number of ECS tasks
+- Amazon ECS Auto Scaling uses AWS Application Auto Scaling
+    - ECS Service Average CPU Utilization
+    - ECS Service Average Memory Utilization - Scale on RAM
+    - ALB Request Count Per Target – metric coming from the ALB
+- Target Tracking – scale based on target value for a specific CloudWatch metric
+- Step Scaling – scale based on a specified CloudWatch Alarm
+- Scheduled Scaling – scale based on a specified date/time (predictable changes)
+- ECS Service Auto Scaling (task level) ≠ EC2 Auto Scaling (EC2 instance level)
 
+![](https://res.cloudinary.com/boo-it/image/upload/v1680968730/aws/ASC_serviceCpu.png)
+
+**ECR (Elastic Container Registry)**
+Amazon ECR is a fully managed container registry offering high-performance hosting, so you can reliably deploy application images and artifacts anywhere. (Amazon ECR là một registry container được quản lý hoàn toàn, cung cấp khả năng lưu trữ hiệu suất cao, để bạn có thể triển khai hình ảnh và tài liệu ứng dụng một cách đáng tin cậy ở bất cứ đâu)
+![](https://res.cloudinary.com/boo-it/image/upload/v1681018807/aws/ecr.png)
+
+**Login Command**
+AWS CLI v2
+<code>aws ecr get-login-password --region <span style="color:red">region</span> | docker login --username AWS --password-stdin <span style="color:red">aws_account_id</span>.dkr.ecr.region.amazonaws.com</code>
+
+**Docker Command**
+Push
+<code>docker push <span style="color:red">aws_account_id</span>.dkr.ecr.<span style="color:red">region</span>.amazonaws.com/demo:latest</code>
+
+Pull
+<code>docker pull<span style="color:red"> aws_account_id</span>.dkr.ecr.<span style="color:red">region</span>.amazonaws.com/demo:latest</code>
+
+**EKS (Amazon Elastic Kubernetes)**
+Amazon EKS is a managed service that you can use to run Kubernetes on AWS without needing to install, operate, and maintain your own Kubernetes control plane or nodes. (Amazon Elastic Kubernetes Service (Amazon EKS) là một dịch vụ được quản lý mà bạn có thể sử dụng để chạy Kubernetes trên AWS mà không cần cài đặt, vận hành và duy trì bảng điều khiển Kubernetes hoặc các nút của riêng bạn.)
+- Kubernetes là một hệ thống mã nguồn mở để triển khai, tự động điều chỉnh và quản lý các ứng dụng được đóng gói theo hình thức container (thông thường là Docker)
+- Đây là một sự lựa chọn thay thế cho ECS, mục tiêu tương tự nhưng API khác nhau
+- EKS hỗ trợ EC2 nếu bạn muốn triển khai các nút worker hoặc Fargate để triển khai các container serverless
+- Use case: nếu công ty của bạn đang sử dụng Kubernetes trên nội bộ hoặc trên một đám mây khác và muốn chuyển đổi sang AWS bằng cách sử dụng Kubernetes
+- Kubernetes là độc lập với đám mây (có thể sử dụng trên bất kỳ đám mây nào - Azure, GCP ...)
+- Đối với nhiều khu vực, triển khai một cụm EKS cho mỗi khu vực
+- Thu thập các nhật ký và số liệu sử dụng CloudWatch Container Insights.
+
+<p align="center">
+  <img src="https://res.cloudinary.com/boo-it/image/upload/v1680968917/aws/eks.png" />
+</p>
+
+**Amazon EKS – Data Volumes**
+- Need to specify StorageClass manifest on your EKS cluster (Cần chỉ định tệp định dạng StorageClass trên cụm EKS của bạn)
+- Leverages a Container Storage Interface (CSI) compliant driver
+
+Container Storage Interface (CSI) là một tiêu chuẩn giao diện lập trình ứng dụng (API) cho phép các trình điều khiển lưu trữ có thể tích hợp với các hệ thống quản lý container như Kubernetes.
+
+Khi một trình điều khiển lưu trữ tuân thủ đối với CSI, nó sẽ cung cấp các chức năng như quản lý, cung cấp và gỡ bỏ các khối lưu trữ cho các ứng dụng container chạy trên Kubernetes.
+
+Vì vậy, khi bạn sử dụng một trình điều khiển lưu trữ tuân thủ đối với CSI trong Kubernetes, bạn có thể dễ dàng tích hợp các lưu trữ khác nhau vào các ứng dụng container của mình mà không cần quan tâm đến cách lưu trữ được triển khai.
+
+Support for…
+• Amazon EBS
+• Amazon EFS (works with Fargate)
+• Amazon FSx for Lustre
+• Amazon FSx for NetApp ONTAP
 
 #### BeanStalk
+
 #### SQS, SNS & Kinesis
 #### Lamda
 #### KMS
