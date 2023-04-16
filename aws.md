@@ -965,7 +965,103 @@ Support for…
 • Amazon FSx for NetApp ONTAP
 
 #### BeanStalk
+**Typical architecture: Web App 3-tier**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681483490/aws/beanstalk_typical.png)
+
+**Web Server Tier vs. Worker Tier**
+![](https://res.cloudinary.com/boo-it/image/upload/v1681544263/aws/web_env_worker_env.png)
 
 #### SQS, SNS & Kinesis
+**What's a queue?**
+SQS là viết tắt của "Simple Queue Service", là một dịch vụ được cung cấp bởi Amazon Web Services (AWS), đây là một dịch vụ nhắn tin (messaging) dựa trên hàng đợi. SQS cho phép các ứng dụng gửi và nhận các thông điệp (messages) giữa các thành phần của hệ thống phân tán (distributed system) một cách đáng tin cậy.
+
+SQS được sử dụng để giải quyết vấn đề liên quan đến đồng bộ hóa các thành phần trong kiến trúc phân tán, nơi mà các thành phần cần phải gửi và nhận các thông điệp một cách bất đồng bộ. Các ứng dụng có thể gửi các thông điệp đến hàng đợi SQS, và các thành phần khác trong hệ thống có thể đọc các thông điệp từ hàng đợi đó để xử lý. SQS cung cấp khả năng chuyển tiếp tự động và xử lý lại các thông điệp không thành công, đồng thời đảm bảo tính nhất quán và độ tin cậy trong giao tiếp giữa các thành phần trong kiến trúc phân tán.
+
+SQS có thể được sử dụng trong các ứng dụng đa nền tảng, các ứng dụng đòi hỏi khả năng mở rộng cao, và các ứng dụng cần độ tin cậy cao trong việc gửi và nhận các thông điệp.
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681569116/aws/sqs_queue.png)
+
+**Standard Queue**
+- Unlimited throughput, unlimited number of messages in queue
+- Default retention of messages: 4 days, maximum of 14 days
+- Low latency  (<10 ms on publish and receive)
+- Limitation of 256KB per message sent
+- Can have duplicate message (at least once delivery)
+- Can have out of orders messages
+
+**SQS - ASG**
+![](https://res.cloudinary.com/boo-it/image/upload/v1681571904/aws/sqs_with_asg.png)
+
+**SQS - Decouple**
+![](https://res.cloudinary.com/boo-it/image/upload/v1681571932/aws/sqs_decouple.png)
+
+**SQS - Access Policy**
+**Visibility timeout**
+When the producer sends a message to SQS, it is stored in the queue until consumed by a consumer. When the consumer is ready, it polls SQS for new messages and ultimately receives the message.
+
+Once a message is received by a consumer, SQS doesn’t automatically delete the message. Because there’s no way for SQS to guarantee that the message has been received by the consumer. The message might get lost in transit or the consumer can fail while processing the message.
+
+So the consumer must delete the message from the queue after receiving and processing it.
+
+While a consumer is processing a message in the queue, SQS temporary hides the message from other consumers. This is done by setting a visibility timeout on the message, a period of time during which SQS prevents other consumers from receiving and processing the message.
+
+The default visibility timeout for a message is <code>30</code> seconds.
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681632402/aws/sqs_visibility.png)
+
+If the message is not processed within the visibility timeout, it will be processed twice. If visibility timeout is high, and consumer crashes, re-processing will take time; if visibility timeout is low, we may get duplicates.
+
+
+**Dead Letter Queue**
+Dead letter queue is a very useful feature in message queuing systems. By using this feature, we can automatically transfer messages, that have exceeded the maximum number of receiving message, to the dead letter queue.
+
+We have a configuration <code>Maximum Receives</code> means the maximum number of retries effectively if the number of retries exceed <code>Maximum Receives</code> value then the message will be sent to <code>Dead Letter Queue</code>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/boo-it/image/upload/v1681632951/aws/sqs_dead_letter_queue.png" />
+</p>
+
+**Delay Queue**
+- Can be configured via <code>Delivery delay</code> configuration
+- Delay a message (consumer don't see it immediately) up to 15 minutes
+- Default is <code>0</code>
+- Can override the default on send using the <code>DelaySeconds</code> in parameter
+
+**Long pooling**
+- When a consumer requests messages from SQS, it can optionally wait for messages to arrive if there are none in the queue (this is long pooling).
+- The wait time can be between 1 to 20 seconds
+- Can configure in queue level via Receive message wait time
+- Can enable in API level using WaitTimeSeconds
+
+**FIFO queue**
+FIFO (First In First Out) queues have essentially the same features as standard queues, but provide the added benefits of supporting ordering and exactly-once processing and ensure that the order in which messages are sent and received is strictly preserved.
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681649119/aws/sqs_fifo.png)
+
+- Limited throughput: 300 msg/s without batching, 3000 msg/s with batching
+- Exactly once
+- Ordering
+
+**Deduplication**
+
+- De-duplication interval is 5 minutes
+- Two de-duplication method:
+- Content-based de-duplication (SHA-256 hash of the message body)
+- Explicitly provide a message
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681649653/aws/sqs_hash.png)
+
+**Message Group ID**
+
+The tag indicates whether or not a message belongs to a particular message group. Messages from the same message group are always handled one by one, in the sequence in which they were received (however, messages that belong to different message groups might be processed out of order).
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681649648/aws/sqs_mess.png)
+
+**SNS**
+
+
+
+
 #### Lamda
 #### KMS
