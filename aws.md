@@ -1060,8 +1060,25 @@ The tag indicates whether or not a message belongs to a particular message group
 
 **SNS**
 
+![](https://res.cloudinary.com/boo-it/image/upload/v1682236509/aws/sns.png)
+
+**SNS & SQS - Fan Out Pattern**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681787733/aws/sns_fanout.png)
+
+- Push once in SNS, receive in all SQS queues that are subscribers
+- Fully decoupled (hoàn toàn tách rời), no data loss
+- SQS allows for: data persistence (bền vững), delayed processing and retries of work
+- Ability to add more SQS subscribers over time
+- Make sure your SQS queue access policy allows for SNS to write
+
+**Kinesis**
 
 
+
+**SQS & SNS & Kinesis**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1682237799/aws/go2i6ywwnpcf3ohycphh.png)
 
 #### Lamda
 #### KMS
