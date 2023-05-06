@@ -1073,8 +1073,12 @@ The tag indicates whether or not a message belongs to a particular message group
 - Make sure your SQS queue access policy allows for SNS to write
 
 **Kinesis**
+Đây là một bộ công cụ của dịch vụ AWS (Amazon Web Services) giúp thu thập, xử lý và phân tích dữ liệu theo thời gian thực. Có thể sử dụng nó để thu thập dữ liệu thời gian thực như: các log ứng dụng, dữ liệu đo lường, luồng nhấp chuột trên trang web, dữ liệu telematics của thiết bị IoT...
 
-
+- Kinesis Data Streams: cho phép bắt, xử lý và lưu trữ các dòng dữ liệu theo thời gian thực.
+- Kinesis Data Firehose: dùng để nạp các dòng dữ liệu theo thời gian thực vào kho dữ liệu trên AWS.
+- Kinesis Data Analytics: cho phép phân tích các dòng dữ liệu theo thời gian thực bằng SQL hoặc Apache Flink.
+- Kinesis Video Streams: dùng để bắt, xử lý và lưu trữ các luồng video theo thời gian thực.
 
 **SQS & SNS & Kinesis**
 
