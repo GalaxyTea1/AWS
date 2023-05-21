@@ -1084,5 +1084,50 @@ The tag indicates whether or not a message belongs to a particular message group
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1682237799/aws/go2i6ywwnpcf3ohycphh.png)
 
+#### AWS Serverless
 #### Lamda
+- Là dịch vụ của AWS cung cấp khả năng tính toán dưới dạng Function Serverless 
+- Không cần phải quản lí Servers
+- Thời gian thực thi 1 function bị giới hạn (up to 15p)
+- Thực thi khi có yêu cầu (Run on-demand)
+
+**Lợi thế**
+- Chi phí (Cost) được tính theo những gì thực sự sử dụng:
+  - Trả phí cho số lượng Requests + thời gian thực thi function (tính theo đơn vị GB-second of Compute)
+- Dễ dàng tích hợp với các dịch vụ khác của AWS
+- Hỗ trợ nhiều ngôn ngữ lập trình khác nhau (Go, Python, Java, Ruby, etc)
+- Hỗ trợ Ram lên tới 10Gb cho Function
+
+**Limit**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1684571143/aws/lamda_limit.png)
+
+**Lamda@Edge**
+- Được deploy tại Edge Location cùng với CloudFront
+- Sử dụng để chạy các Functions gần với người dùng cuối (End User)
+- Dùng để filtering/modification/customize yêu cầu từ người dùng tại Edge Location
+
+**Changes req/res**
+- Sử dụng Lambda@Edge để thay đổi CloudFront Request/Response
+- Sau khi nhận Request từ phía Client
+- Trước khi gửi Request tới Origin
+- Sau khi nhận Response từ Origin
+- Trước khi gửi trả Response cho phía Client
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1684571559/aws/lamda_edge.png)
+
+**Usecases**
+- Giảm thiểu Bot Attack tại Edge Locatin (Bot Attack mitigation)
+- Xác thực và phân quyền cho User tại Edge
+- Website Security and Privacy
+- User Tracking and Analytics...
+
+**API Gateway**
+
+#### SAM
+- SAM stands for Serverless Application Model. 
+- Là tính năng mở rộng của CloudFormation cho phép triển khai ứng dụng Serverless
+- Hỗ trợ triển khai API gateway, DynamoDB, Lambda functions
+- Chạy ứng dụng Serverless ngay trên Docker tại máy Local
+- Đóng gói và triển khai sử dụng CodeDeploy
 #### KMS
