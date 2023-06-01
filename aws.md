@@ -1091,10 +1091,119 @@ JSON policy used to filter messages sent to SNS topic's subscriptions
 
 ![](https://res.cloudinary.com/boo-it/image/upload/v1681787864/aws/sns_message_filrering.png)
 
+**SNS & SQS - Fan Out Pattern**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681787733/aws/sns_fanout.png)
+
+- Push once in SNS, receive in all SQS queues that are subscribers
+- Fully decoupled (hoàn toàn tách rời), no data loss
+- SQS allows for: data persistence (bền vững), delayed processing and retries of work
+- Ability to add more SQS subscribers over time
+- Make sure your SQS queue access policy allows for SNS to write
 
 **Kinesis**
+Đây là một bộ công cụ của dịch vụ AWS (Amazon Web Services) giúp thu thập, xử lý và phân tích dữ liệu theo thời gian thực. Có thể sử dụng nó để thu thập dữ liệu thời gian thực như: các log ứng dụng, dữ liệu đo lường, luồng nhấp chuột trên trang web, dữ liệu telematics của thiết bị IoT...
 
-**SQS vs SNS vs Kinesis**
+- Kinesis Data Streams: cho phép bắt, xử lý và lưu trữ các dòng dữ liệu theo thời gian thực.
+- Kinesis Data Firehose: dùng để nạp các dòng dữ liệu theo thời gian thực vào kho dữ liệu trên AWS.
+- Kinesis Data Analytics: cho phép phân tích các dòng dữ liệu theo thời gian thực bằng SQL hoặc Apache Flink.
+- Kinesis Video Streams: dùng để bắt, xử lý và lưu trữ các luồng video theo thời gian thực.
 
+**SQS & SNS & Kinesis**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1682237799/aws/go2i6ywwnpcf3ohycphh.png)
+
+#### AWS Serverless
 #### Lamda
-#### KMS
+- Là dịch vụ của AWS cung cấp khả năng tính toán dưới dạng Function Serverless 
+- Không cần phải quản lí Servers
+- Thời gian thực thi 1 function bị giới hạn (up to 15p)
+- Thực thi khi có yêu cầu (Run on-demand)
+
+**Lợi thế**
+- Chi phí (Cost) được tính theo những gì thực sự sử dụng:
+  - Trả phí cho số lượng Requests + thời gian thực thi function (tính theo đơn vị GB-second of Compute)
+- Dễ dàng tích hợp với các dịch vụ khác của AWS
+- Hỗ trợ nhiều ngôn ngữ lập trình khác nhau (Go, Python, Java, Ruby, etc)
+- Hỗ trợ Ram lên tới 10Gb cho Function
+
+**Limit**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1684571143/aws/lamda_limit.png)
+
+**Lamda@Edge**
+- Được deploy tại Edge Location cùng với CloudFront
+- Sử dụng để chạy các Functions gần với người dùng cuối (End User)
+- Dùng để filtering/modification/customize yêu cầu từ người dùng tại Edge Location
+
+**Changes req/res**
+- Sử dụng Lambda@Edge để thay đổi CloudFront Request/Response
+- Sau khi nhận Request từ phía Client
+- Trước khi gửi Request tới Origin
+- Sau khi nhận Response từ Origin
+- Trước khi gửi trả Response cho phía Client
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1684571559/aws/lamda_edge.png)
+
+**Usecases**
+- Giảm thiểu Bot Attack tại Edge Locatin (Bot Attack mitigation)
+- Xác thực và phân quyền cho User tại Edge
+- Website Security and Privacy
+- User Tracking and Analytics...
+
+**API Gateway**
+
+#### SAM
+- SAM stands for Serverless Application Model. 
+- Là tính năng mở rộng của CloudFormation cho phép triển khai ứng dụng Serverless
+- Hỗ trợ triển khai API gateway, DynamoDB, Lambda functions
+- Chạy ứng dụng Serverless ngay trên Docker tại máy Local
+- Đóng gói và triển khai sử dụng CodeDeploy
+
+#### Encryption
+Mã hóa (encryption) là quá trình chuyển đổi thông tin từ dạng rõ (plaintext) thành dạng không đọc được (ciphertext) để bảo vệ dữ liệu khỏi việc truy cập trái phép. Quá trình mã hóa thường sử dụng một thuật toán mã hóa cùng với một khóa (key) để biến đổi dữ liệu ban đầu thành một định dạng mà chỉ có người có khóa giải mã (decryption key) mới có thể đọc được.
+
+**Encryption in flight (SSL)**, còn được gọi là mã hóa trong quá trình truyền (SSL), áp dụng mã hóa cho dữ liệu trong quá trình truyền từ một điểm đến điểm khác trên mạng. SSL (Secure Sockets Layer) hoặc phiên bản tiếp theo của nó là TLS (Transport Layer Security) là một giao thức bảo mật được sử dụng để thiết lập kênh liên lạc an toàn giữa hai thiết bị hoặc ứng dụng trên mạng.
+
+- Khi một kết nối SSL/TLS được thiết lập giữa máy tính của người gửi và máy tính của người nhận, dữ liệu được mã hóa trước khi được gửi qua mạng. Quá trình này đảm bảo rằng bất kỳ ai nghe lén trên đường truyền cũng không thể đọc được nội dung của thông tin. Dữ liệu chỉ được giải mã khi nó đến đích và đúng khóa giải mã được sử dụng.
+
+- Encryption in flight (SSL/TLS) là một phương thức quan trọng để bảo vệ dữ liệu trong quá trình truyền trên mạng. Nó đảm bảo tính toàn vẹn, bảo mật và sự riêng tư của thông tin trong khi nó đang được truyền từ nguồn đến đích.
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1685196467/aws/encryp_ssl.png)
+
+**Server side encryption at rest**
+- Data is encrypted after being received by the server
+- Data is decrypted before being sent
+- It is stored in an encrypted form thanks to a key (usually a data key) 
+- The encryption / decryption keys must be managed somewhere and the server must have access to it
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1685196774/aws/encryp_sv_rest.png)
+
+**Client side encryption**
+- Data is encrypted by the client and never decrypted by the server
+- Data will be decrypted by a receiving client
+- The server should not be able to decrypt the data
+- Could leverage Envelope Encryption
+
+Envelope Encryption (Mã hóa bì) là một phương pháp mã hóa dữ liệu trong đó sử dụng hai cấp khóa để bảo vệ tính bí mật của dữ liệu. Phương pháp này được sử dụng trong các hệ thống và ứng dụng lưu trữ dữ liệu nhạy cảm hoặc yêu cầu mức độ bảo mật cao.
+
+Cơ bản, trong Envelope Encryption, dữ liệu được mã hóa bằng một khóa mã hóa dữ liệu chính (data encryption key - DEK). DEK có thể là một khóa ngẫu nhiên được tạo ra mỗi khi dữ liệu cần được mã hóa hoặc một khóa được tạo từ quá trình khác. Sau khi dữ liệu được mã hóa bằng DEK, DEK lại được mã hóa bằng một khóa mã hóa khóa (key encryption key - KEK).
+
+Khóa mã hóa khóa (KEK) là một khóa bảo mật được lưu trữ hoặc quản lý bởi một phần mềm hoặc hệ thống an ninh. KEK có thể được tạo ra bằng cách sử dụng mật khẩu người dùng hoặc khóa bí mật khác. Với KEK đã mã hóa DEK, dữ liệu và DEK có thể được lưu trữ hoặc truyền đi một cách an toàn hơn.
+
+Khi dữ liệu cần được giải mã, KEK được sử dụng để giải mã DEK, sau đó DEK được sử dụng để giải mã dữ liệu. Quá trình giải mã chỉ diễn ra khi dữ liệu đến đúng đích cuối cùng và trên một thiết bị tin cậy.
+
+Envelope Encryption cung cấp một lớp bảo mật bổ sung cho dữ liệu, cho phép quản lý khóa mã hóa và dữ liệu riêng lẻ một cách hiệu quả. Bằng cách sử dụng hai cấp khóa và phân chia quyền truy cập, Envelope Encryption giúp đảm bảo rằng ngay cả khi một khóa mã hóa bị tiết lộ, dữ liệu vẫn được bảo vệ một cách an toàn.
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1685197038/aws/encryp_client.png)
+
+#### KMS (Key Management Service)
+KMS là viết tắt của Key Management Service (Dịch vụ Quản lý Khóa). KMS là một dịch vụ quản lý khóa tiện ích trong AWS, cho phép bạn tạo và kiểm soát việc sử dụng khóa mã hóa trong các dịch vụ khác nhau.
+
+- KMS cung cấp khả năng tạo khóa mã hóa, lưu trữ khóa một cách an toàn và quản lý việc sử dụng khóa trong AWS. Bằng cách sử dụng KMS, bạn có thể mã hóa dữ liệu trong các dịch vụ như Amazon S3, Amazon EBS, Amazon RDS, Amazon Redshift và nhiều dịch vụ khác của AWS.
+
+- KMS cũng hỗ trợ quản lý khóa đối xứng và khóa bất đối xứng. Bạn có thể sử dụng khóa của KMS để mã hóa dữ liệu trong AWS hoặc có thể xuất khóa và sử dụng nó bên ngoài AWS.
+
+- KMS giúp bảo vệ dữ liệu của bạn bằng cách cho phép kiểm soát và quản lý quyền truy cập vào khóa mã hóa. Bạn có thể quản lý và theo dõi các hoạt động sử dụng khóa bằng cách sử dụng các công cụ và API được cung cấp bởi KMS.
+
+*Tóm lại, KMS trong AWS là một dịch vụ quản lý khóa mạnh mẽ và tiện ích, giúp bạn bảo vệ và quản lý việc mã hóa dữ liệu trong các dịch vụ AWS.*
