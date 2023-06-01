@@ -1059,9 +1059,42 @@ The tag indicates whether or not a message belongs to a particular message group
 ![](https://res.cloudinary.com/boo-it/image/upload/v1681649648/aws/sqs_mess.png)
 
 **SNS**
+- Pub/sub pattern
+- The producer only sends message to one SNS topic
+- Many subscribers can listen to that topic
+- Up to 12,500,000 subscribers per topic
+- 100,000 topics limit
+
+**SNS - How to publish**
+- Topic Publish (using the SDK)
+    - Create a topic
+    - Creae a subscription (or many)
+    - Publish to the topic
+
+- Direct Publish (for mobile apps SDK)
+    - Create a platform application
+    - Create a platform endpoint
+    - Publish to the platform endpoint
+    - Works with Google GCM, Apple APNS, Amazon ADM...
+
+**Fan Out Pattern**
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681787733/aws/sns_fanout.png)
+
+**SNS - FIFO**
+- Similar features as FIFO queue
+- Can only have SQS FIFO queues as subscribers
+- Limited throughput (same as FIFO queue)
+
+**SNS - Message filtering**
+JSON policy used to filter messages sent to SNS topic's subscriptions
+
+![](https://res.cloudinary.com/boo-it/image/upload/v1681787864/aws/sns_message_filrering.png)
 
 
+**Kinesis**
 
+**SQS vs SNS vs Kinesis**
 
 #### Lamda
 #### KMS
